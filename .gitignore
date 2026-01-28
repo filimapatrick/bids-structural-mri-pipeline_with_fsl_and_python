@@ -1,0 +1,65 @@
+# macOS
+.DS_Store
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+.Python
+build/
+dist/
+*.dist-info/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Caches & temp
+.cache/
+*.tmp
+*.temp
+*.swp
+*~
+
+# Logs
+logs/
+*.log
+
+# BIDS dataset (large inputs) — usually not versioned
+# Comment this out if you intend to track the dataset
+ds000246_mri/
+data/
+
+# Nipype/Workflow outputs — derived artifacts
+# By default ignore all derivatives; whitelist below if needed
+ds000246_mri/derivatives/
+# To keep small summary/metrics, uncomment these:
+# !ds000246_mri/derivatives/mri_pipeline/summary/
+# !ds000246_mri/derivatives/mri_pipeline/metrics/
+
+# FreeSurfer outputs (if created)
+freesurfer/
+ds000246_mri/derivatives/freesurfer/
+
+# Redundant with ds000246_mri/ above; remove if not needed
+# ds000246_mri/sub-0001

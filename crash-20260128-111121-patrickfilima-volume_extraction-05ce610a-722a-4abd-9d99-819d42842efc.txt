@@ -1,0 +1,61 @@
+Node: structural_pipeline.volume_extraction
+Working directory: /Users/patrickfilima/Desktop/Improvement/ds000246_mri/derivatives/mri_pipeline/structural_pipeline/volume_extraction
+
+Node inputs:
+
+function_str = def compute_tissue_volumes(seg_files, subject_id, output_dir):
+    """
+    Compute CSF, GM, WM volumes from FAST segmentation outputs.
+    """
+    tissue_labels = {
+        "CSF": 0,
+        "GM": 1,
+        "WM": 2
+    }
+
+    volumes = {"subject_id": subject_id}
+
+    for seg_file in seg_files:
+        img = nib.load(seg_file)
+        data = img.get_fdata()
+        voxel_volume = np.prod(img.header.get_zooms())
+
+        for name, label in tissue_labels.items():
+            volumes[name] = np.sum(data == label) * voxel_volume
+
+    df = pd.DataFrame([volumes])
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    out_file = output_dir / f"{subject_id}_tissue_volumes.tsv"
+    df.to_csv(out_file, sep="\t", index=False)
+
+    return str(out_file)
+
+output_dir = ds000246_mri/derivatives/mri_pipeline/metrics
+seg_files = <undefined>
+subject_id = sub-0001
+
+Traceback (most recent call last):
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+                       ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 525, in run
+    result = self._run_interface(execute=True)
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_interface
+    return self._run_command(execute)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 769, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node volume_extraction.
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/base/core.py", line 401, in run
+	    runtime = self._run_interface(runtime)
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/utility/wrappers.py", line 139, in _run_interface
+	    out = function_handle(**args)
+	  File "<string>", line 14, in compute_tissue_volumes
+	NameError: name 'nib' is not defined
+

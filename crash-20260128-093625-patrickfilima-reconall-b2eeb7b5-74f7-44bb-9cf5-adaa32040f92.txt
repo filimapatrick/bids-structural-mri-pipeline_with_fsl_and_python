@@ -1,0 +1,87 @@
+Node: structural_pipeline.reconall
+Working directory: /Users/patrickfilima/Desktop/Improvement/ds000246_mri/derivatives/mri_pipeline/structural_pipeline/reconall
+
+Node inputs:
+
+FLAIR_file = <undefined>
+T1_files = ['ds000246_mri/sub-0001/anat/sub-0001_T1w.nii.gz']
+T2_file = <undefined>
+args = <undefined>
+base_template_id = <undefined>
+base_timepoint_ids = <undefined>
+big_ventricles = <undefined>
+brainstem = <undefined>
+directive = all
+environ = {}
+expert = <undefined>
+flags = <undefined>
+hemi = <undefined>
+hippocampal_subfields_T1 = <undefined>
+hippocampal_subfields_T2 = <undefined>
+hires = <undefined>
+longitudinal_template_id = <undefined>
+longitudinal_timepoint_id = <undefined>
+mprage = <undefined>
+mri_aparc2aseg = <undefined>
+mri_ca_label = <undefined>
+mri_ca_normalize = <undefined>
+mri_ca_register = <undefined>
+mri_edit_wm_with_aseg = <undefined>
+mri_em_register = <undefined>
+mri_fill = <undefined>
+mri_mask = <undefined>
+mri_normalize = <undefined>
+mri_pretess = <undefined>
+mri_remove_neck = <undefined>
+mri_segment = <undefined>
+mri_segstats = <undefined>
+mri_tessellate = <undefined>
+mri_watershed = <undefined>
+mris_anatomical_stats = <undefined>
+mris_ca_label = <undefined>
+mris_fix_topology = <undefined>
+mris_inflate = <undefined>
+mris_make_surfaces = <undefined>
+mris_register = <undefined>
+mris_smooth = <undefined>
+mris_sphere = <undefined>
+mris_surf2vol = <undefined>
+mrisp_paint = <undefined>
+openmp = 4
+parallel = <undefined>
+subject_id = sub-0001
+subjects_dir = <undefined>
+talairach = <undefined>
+use_FLAIR = <undefined>
+use_T2 = <undefined>
+xopts = <undefined>
+
+Traceback (most recent call last):
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+                       ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 525, in run
+    result = self._run_interface(execute=True)
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_interface
+    return self._run_command(execute)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 769, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node reconall.
+
+Cmdline:
+	recon-all -all -i ds000246_mri/sub-0001/anat/sub-0001_T1w.nii.gz -openmp 4 -subjid sub-0001 -sd /Users/patrickfilima/Desktop/Improvement/ds000246_mri/derivatives/mri_pipeline/structural_pipeline/reconall
+Stdout:
+
+Stderr:
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/base/core.py", line 401, in run
+	    runtime = self._run_interface(runtime)
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/base/core.py", line 756, in _run_interface
+	    raise OSError(
+	    ...<3 lines>...
+	    )
+	OSError: No command "recon-all" found on host Patricks-MacBook-Air.local. Please check that the corresponding package is installed.
+

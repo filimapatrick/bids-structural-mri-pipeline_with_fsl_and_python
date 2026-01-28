@@ -1,0 +1,37 @@
+Node: structural_pipeline.t1w_resolver
+Working directory: /Users/patrickfilima/Desktop/Improvement/ds000246_mri/derivatives/mri_pipeline/structural_pipeline/_subject_id_sub-emptyroom/t1w_resolver
+
+Node inputs:
+
+bids_root = /Users/patrickfilima/Desktop/Improvement/ds000246_mri
+function_str = def get_t1w_path(subject_id, bids_root):
+    from pathlib import Path
+    t1w = Path(bids_root) / subject_id / "anat" / f"{subject_id}_T1w.nii.gz"
+    if not t1w.exists():
+        raise FileNotFoundError(f"Missing T1w image for {subject_id}")
+    return str(t1w.resolve())
+
+subject_id = sub-emptyroom
+
+Traceback (most recent call last):
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+                       ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 525, in run
+    result = self._run_interface(execute=True)
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_interface
+    return self._run_command(execute)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/pipeline/engine/nodes.py", line 769, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node t1w_resolver.
+
+Traceback:
+	Traceback (most recent call last):
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/base/core.py", line 401, in run
+	    runtime = self._run_interface(runtime)
+	  File "/Users/patrickfilima/Desktop/Improvement/.venv/lib/python3.14/site-packages/nipype/interfaces/utility/wrappers.py", line 139, in _run_interface
+	    out = function_handle(**args)
+	  File "<string>", line 5, in get_t1w_path
+	FileNotFoundError: Missing T1w image for sub-emptyroom
+
